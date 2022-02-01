@@ -1,6 +1,6 @@
 # Demo using openweathermap and Rust with cloudflare workers
 This demo pulls the current and 1st daily forecast from openweathermap.org.
-A minimal html file is then send with temperature data parsed.
+A minimal html file is then sent with temperature data parsed.
 
 [live version](https://rustwasm-openweathermap.alexg.workers.dev/)
 
