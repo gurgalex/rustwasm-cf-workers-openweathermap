@@ -89,11 +89,13 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
     let first_day = &weather_data.daily.unwrap()[0];
     let mut html_content = String::with_capacity(1024);
     html_content.push_str(r"<h1>Weather 🌦: Rust + WASM + Cloudflare Workers</h1>");
-    html_content.push_str(r#"<p>This demo uses geolocation data from <a href="https://openweathermap.org" target="_blank">openweathermap.org</a>.</p>"#);
+    html_content.push_str(r#"<p>This demo uses weather data from <a href="https://openweathermap.org" target="_blank">openweathermap.org</a>.</p>"#);
     html_content.push_str(r#"<p>Source for the demo available <a href="https://github.com/gurgalex/rustwasm-cf-workers-openweathermap" target="_blank">here</a>.</p>"#);
     if !known_location {
-        html_content.push_str("<p><b>Unable to determine location, using Ames as default</b></p>")
-    }
+        html_content.push_str("<p><b>Unable to determine location, using Ames as default.</b></p>");
+    } else {
+        html_content.push_str("<p>Your location is estimated using Cloudflare edge servers.</p>");
+    };
 
     html_content.push_str(&*format!(
         "Showing weather data for: Lat: {}, Long: {}.</p>",
